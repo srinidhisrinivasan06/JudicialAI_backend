@@ -105,6 +105,8 @@ class CaseUpdate(BaseModel):
 
 class CaseRead(CaseBase):
     id: int
+    embedding_generated: bool = False
+    embedding_updated_at: Optional[datetime] = None
     created_at: datetime
     updated_at: datetime
 

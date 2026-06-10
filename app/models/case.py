@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, Integer, String, Text
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.sql import func
 
@@ -19,5 +19,7 @@ class Case(Base):
     case_type = Column(String(50), nullable=False, index=True)
     year = Column(Integer, nullable=False, index=True)
     case_status = Column(String(50), nullable=False, default="active", index=True)
+    embedding_generated = Column(Boolean, nullable=False, default=False, index=True)
+    embedding_updated_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)

@@ -37,6 +37,8 @@ class CaseRepository:
     def update_case(self, case: Case, update_data: dict[str, Any]) -> Case:
         for field_name, field_value in update_data.items():
             setattr(case, field_name, field_value)
+        case.embedding_generated = False
+        case.embedding_updated_at = None
         self.db.commit()
         self.db.refresh(case)
         return case
